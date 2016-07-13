@@ -1,9 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 #
-"""
-# Use a queue to rtmpsink not block the pipeline
-"""
 
 import sys
 import gst
@@ -41,7 +38,7 @@ enc = pipeline.get_by_name("enc")
 
 
 if not pipeline or not src or not sink:
-    print "Not all elements could be created."
+    print "Error creating pipe. "
     exit(-1)
 
 # Start the pipeline
@@ -49,8 +46,6 @@ ret = pipeline.set_state(gst.STATE_PLAYING)
 if ret ==  gst.STATE_CHANGE_FAILURE:
     print "Unable to set the pipeline to the playing state."
     exit(-1)
-
-print "Set the pipeline to the playing state."
 
 # Wait until error or EOS
 bus = pipeline.get_bus()
